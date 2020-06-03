@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  boinc:
+    image: boinc/client:arm64v8
+    container_name: boinc
+    network_mode: host
+    pid: host
+    restart: always
+    mem_limit: 3200mb
+    shm_size: 1600mb
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/appdata/boinc:/var/lib/boinc
+      - ./global_prefs.xml:/var/lib/boinc/global_prefs.xml
+      - ./cc_config.xml:/var/lib/boinc/cc_config.xml
+      - ./password.txt:/var/lib/boinc/gui_rpc_auth.cfg:ro
